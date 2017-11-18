@@ -4,6 +4,14 @@
   "repository": "https://github.com/monkeylearn/segment2datadog",
   "website": "https://github.com/monkeylearn/segment2datadog",
   "keywords": ["segment", "datadog", "monitoring", "alerts", "forwarding"],
+  "buildpacks": [
+    {
+      "url": "https://github.com/DataDog/heroku-buildpack-datadog.git"
+    },
+    {
+      "url": "heroku/python"
+    }
+  ]
   "env": {
     "DD_API_KEY": {
       "description": "Your Datadog API key.",
