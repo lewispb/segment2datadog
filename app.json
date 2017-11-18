@@ -6,13 +6,16 @@
   "keywords": ["segment", "datadog", "monitoring", "alerts", "forwarding"],
   "env": {
     "DATADOG_API_KEY": {
-      "description": "Your Datadog API key."
+      "description": "Your Datadog API key.",
+      "required": true
     },
     "DATADOG_APP_KEY": {
-      "description": "Your Datadog app key."
+      "description": "Your Datadog app key.",
+      "required": true
     },
     "SEGMENT_SHARED_SECRET": {
-      "description": "Your Segment Webhooks destination Shared Secret."
+      "description": "Your Segment Webhooks destination Shared Secret.",
+      "required": true
     }
   },
 }
