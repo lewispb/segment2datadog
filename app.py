@@ -39,6 +39,6 @@ def segment2datadog(source):
         abort(404, 'Source parameter not present.')
     content = request.get_json(silent=True)
     # increment event counter in datadog
-    if 'event' in content:
+    if content['type'] == 'track':
         statsd.increment('segment.event', tags = ['source:' + source, 'event:' + '-'.join(content['event'].split()), 'type:' + content['type']])
     return jsonify({'source': source, 'data': content})
