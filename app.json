@@ -1,0 +1,18 @@
+{
+  "name": "Segment to Datadog",
+  "description": "A minimal app to forward Segment events to Datadog. Useful for monitoring and alerting on Segment events within Datadog.",
+  "repository": "https://github.com/monkeylearn/segment2datadog",
+  "website": "https://github.com/monkeylearn/segment2datadog",
+  "keywords": ["segment", "datadog", "monitoring", "alerts", "forwarding"],
+  "env": {
+    "DATADOG_API_KEY": {
+      "description": "Your Datadog API key."
+    },
+    "DATADOG_APP_KEY": {
+      "description": "Your Datadog app key."
+    },
+    "SEGMENT_SHARED_SECRET": {
+      "description": "Your Segment Webhooks destination Shared Secret."
+    }
+  },
+}

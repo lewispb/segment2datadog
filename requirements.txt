@@ -1,0 +1,3 @@
+Flask
+gunicorn
+datadog==0.17.0
