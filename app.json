@@ -5,17 +5,21 @@
   "website": "https://github.com/monkeylearn/segment2datadog",
   "keywords": ["segment", "datadog", "monitoring", "alerts", "forwarding"],
   "env": {
-    "DATADOG_API_KEY": {
+    "DD_API_KEY": {
       "description": "Your Datadog API key.",
       "required": true
     },
-    "DATADOG_APP_KEY": {
+    "DD_APP_KEY": {
       "description": "Your Datadog app key.",
+      "required": true
+    },
+    "DD_HOSTNAME": {
+      "description": "Name of your Heroku app.",
       "required": true
     },
     "SEGMENT_SHARED_SECRET": {
       "description": "Your Segment Webhooks destination Shared Secret.",
       "required": true
     }
-  },
+  }
 }

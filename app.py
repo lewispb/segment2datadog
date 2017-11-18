@@ -8,8 +8,8 @@ from datadog import statsd
 
 # get keys from enfironment variables
 SEGMENT_SHARED_SECRET = os.environ['SEGMENT_SHARED_SECRET']
-DATADOG_API_KEY = os.environ['DATADOG_API_KEY']
-DATADOG_APP_KEY = os.environ['DATADOG_APP_KEY']
+DATADOG_API_KEY = os.environ['DD_API_KEY']
+DATADOG_APP_KEY = os.environ['DD_APP_KEY']
 
 # initialize datadog
 options = {
