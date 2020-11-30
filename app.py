@@ -2,7 +2,7 @@ import hmac
 import hashlib
 import os
 from flask import Flask, jsonify, request, abort
-from datadog import initialize, api
+from datadog import initialize, api, statsd
 
 # get keys from enfironment variables
 SEGMENT_SHARED_SECRET = os.environ['SEGMENT_SHARED_SECRET']
@@ -13,7 +13,9 @@ TRACKED_EVENTS = os.environ['DD_TRACKED_EVENTS'].split(',')
 # initialize datadog
 options = {
     'api_key': DATADOG_API_KEY,
-    'app_key': DATADOG_APP_KEY
+    'app_key': DATADOG_APP_KEY,
+    'statsd_host': '127.0.0.1',
+    'statsd_port': 8125,
 }
 
 initialize(**options)
@@ -37,6 +39,6 @@ def segment2datadog(source):
     # increment event counter in datadog
     if content['type'] == 'track':
         if content['event'] in TRACKED_EVENTS:
-            print("tracking even:" + content['event'])
-            api.Event.create(title='segment.event', text=content['event'], tags=['source:' + source, 'type:' + content['type']])
+            print("tracking event:" + content['event'])
+            statsd.increment('segment.event', tags = ['source:' + source, 'event:' + '-'.join(content['event'].split()), 'type:' + content['type']])
     return jsonify({'source': source, 'data': content})
