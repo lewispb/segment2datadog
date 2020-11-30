@@ -37,5 +37,6 @@ def segment2datadog(source):
     # increment event counter in datadog
     if content['type'] == 'track':
         if content['event'] in TRACKED_EVENTS:
+            print("tracking even:" + content['event'])
             api.Event.create(title='segment.event', text=content['event'], tags=['source:' + source, 'type:' + content['type']])
     return jsonify({'source': source, 'data': content})
