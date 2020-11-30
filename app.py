@@ -8,6 +8,7 @@ from datadog import initialize, api, statsd
 SEGMENT_SHARED_SECRET = os.environ['SEGMENT_SHARED_SECRET']
 DATADOG_API_KEY = os.environ['DD_API_KEY']
 DATADOG_APP_KEY = os.environ['DD_APP_KEY']
+TRACKED_EVENTS = os.environ['DD_TRACKED_EVENTS'].split(',')
 
 # initialize datadog
 options = {
@@ -35,5 +36,6 @@ def segment2datadog(source):
     content = request.get_json(silent=True)
     # increment event counter in datadog
     if content['type'] == 'track':
-        statsd.increment('segment.event', tags = ['source:' + source, 'event:' + '-'.join(content['event'].split()), 'type:' + content['type']])
+        if content['event'] in TRACKED_EVENTS:
+            statsd.increment('segment.event', tags = ['source:' + source, 'event:' + '-'.join(content['event'].split()), 'type:' + content['type']])
     return jsonify({'source': source, 'data': content})
